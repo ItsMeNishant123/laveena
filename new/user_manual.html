@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manual</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            background-size: 400% 400%;
+            animation: gradientAnimation 6s infinite alternate ease-in-out;
+            color: white;
+            font-size: 2.5vw;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        .content {
+            max-width: 80vw;
+            padding: 2vw;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 3vw;
+            margin-bottom: 1vw;
+            opacity: 0;
+            display: inline-block;
+        }
+        p {
+            font-size: 1.8vw;
+            line-height: 1.6;
+            margin: 10px 0;
+            opacity: 1;
+            transition: opacity 2s ease-in-out;
+        }
+        .fade {
+            opacity: 0.5;
+        }
+        .footer {
+            position: absolute;
+            bottom: 5vh;
+        }
+        .btn {
+            padding: 12px 24px;
+            font-size: 1.5vw;
+            color: white;
+            background-color: #ff4f7b;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+        .btn:hover {
+            background-color: #ff2f5d;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bg-music" loop>
+        <source src="/audio/pure-love-304010.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button class="btn" id="music-btn">Play Music</button>
+    
+    <script>
+        const music = document.getElementById("bg-music");
+        const musicButton = document.getElementById("music-btn");
+    
+        musicButton.addEventListener("click", function () {
+            if (music.paused) {
+                music.play();  // Play music
+                musicButton.textContent = "Stop Music";  // Change button text
+            } else {
+                music.pause();  // Pause music
+                musicButton.textContent = "Play Music";  // Change button text
+            }
+        });
+    </script>
+    
+    <div class="content">
+        <h1 id="title"></h1>
+        <p id="instruction1">1. Press and hold the left mouse button to pause on any slide.</p>
+        <p id="instruction2">2. Use the left and right arrows to navigate through the slides manually.</p>
+        <p id="instruction3">3. There is a video button at the bottom of the screen that contains a YouTube video. If it shows "Video Unavailable," click on it to be redirected to YouTube.</p>
+        <p id="instruction4">That’s all! Enjoy your experience.</p>
+    </div>
+    <div class="footer">
+        <button class="btn" onclick="window.location.href='home.html'">Return to Home</button>
+        
+    </div>
+    <script>
+        function revealTitle() {
+            let titleElement = document.getElementById("title");
+            let text = "User Manual";
+            let index = 0;
+            
+            function showNextLetter() {
+                if (index < text.length) {
+                    titleElement.innerHTML += text[index];
+                    titleElement.style.opacity = 1;
+                    index++;
+                    setTimeout(showNextLetter, 150);
+                }
+            }
+            showNextLetter();
+        }
+
+        function fadeInstructions() {
+            setTimeout(() => document.getElementById("instruction1").classList.add("fade"), 5000);
+            setTimeout(() => document.getElementById("instruction2").classList.add("fade"), 12000);
+            setTimeout(() => document.getElementById("instruction3").classList.add("fade"), 19000);
+            setTimeout(() => document.getElementById("instruction4").classList.add("fade"), 25000);
+        }
+
+        window.onload = function () {
+            revealTitle();
+            fadeInstructions();
+        };
+    </script>
+</body>
+</html>
