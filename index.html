@@ -47,13 +47,13 @@
 <body>
     <div class="container">
         <p>Enter Password</p>
-        <input type="password" id="password-input" placeholder="Enter password">
+        <input type="password" id="password-input" placeholder="Enter date when we talk first time(ddmmyyyy)">
         <button onclick="checkPassword()">Submit</button>
     </div>
     
     <script>
         function checkPassword() {
-            const correctPassword = "1234"; // Change this password
+            const correctPassword = "24112024"; // Change this password
             const input = document.getElementById("password-input").value;
             if (input === correctPassword) {
                 window.location.href = "entry.html"; // Redirect to main page
